@@ -1,0 +1,30 @@
+{% extends 'poll/base.html' %}
+
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form action="{% url 'image-poll-vote' question.id %}" method="post">
+        {% csrf_token %}
+
+        {{ question }}
+
+        {% for choice in question.choice %}
+            <div class="radio">
+              <label><input type="radio" name="choice" value="{{ choice.id }}"><img src="https://media.giphy.com/media/gmwdx428w9puw/giphy.gif" alt="My image" class = "loader"/>
+              </label>
+                <label><input type="radio" name="choice" value="{{ choice.id }}"><img class="vote-images" src="{{ choice.choice.url }}" alt="img-deleted"/>
+                </label>
+
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-outline-success">Vote</button>
+    </form>
+
+
+
+{% endblock %}

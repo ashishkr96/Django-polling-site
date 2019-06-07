@@ -1,0 +1,25 @@
+{% extends 'poll/base.html' %}
+
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form action="{% url 'login' %}" method="post" class="form-group">
+        {% csrf_token %}
+        <legend>Sign In</legend>
+        <label>Username</label> <input type="text" autocomplete="off" name="username" placeholder="Username"
+                                       required><br>
+        <label>Password </label> <input type="password" autocomplete="off" name="password" placeholder="password"
+                                        required><br>
+        <button type="submit" class="btn-sm btn-primary mt-2 mb-2">Sign In</button><br>
+        <small class="text-muted mt-2 mb-2">Don't have account.Create new one <a href = "{% url 'signup' %}">Click here</a></small>
+        <h6>OR</h6>
+      
+        <a class="btn-sm btn-primary" id="social" href="{% url 'social:begin' 'facebook' %}">Login with <i class="fab fa-facebook-f" aria-hidden="true">acebook</i></a> |
+        <a class="btn-sm btn-danger" id="social" href="{% url 'social:begin' 'google-oauth2' %}">Login with <i class="fab fa-google" aria-hidden="true">oogle</i></a>
+    </form>
+{% endblock %}

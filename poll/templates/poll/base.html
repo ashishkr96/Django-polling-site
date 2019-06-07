@@ -1,0 +1,111 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'poll/stylesupport.css' %}">
+    <title>Friendspoll</title>
+</head>
+<body>
+<div class="row">
+
+
+    <ul class="navigation-bar">
+
+
+        <li class="navbar-items"><i class='fas fa-home fa-fw' id="hov"></i><a class="navbar-links" id="hov"
+                                                                              href="{% url 'all-poll' %}">Home</a>
+        </li>
+        <li class="navbar-items"><i id="hov" class='fas fa-chart-line fa-fw'></i><a class="navbar-links" id="hov"
+                                                                                    href="{% url 'create-poll' %}">Start
+            poll</a></li>
+
+
+            <li class="navbar-items"><i id="hov" class="far fa-images"></i><a id="hov" class="navbar-links"
+                                                                                     href="{% url 'image-create-poll' %}" >Start Image Poll</a>
+        {% if user.is_authenticated %}
+
+            <li class="navbar-items"><i id="hov" class='fa fa-unlock-alt fa-fw'></i><a id="hov" class="navbar-links"
+                                                                                       href="{% url 'logout' %}">Logout</a>
+            </li>
+        {% else %}
+
+            <li class="navbar-items"><i id="hov" class='fa fa-lock fa-fw'></i><a id="hov" class="navbar-links"
+                                                                                 href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+        <li class="navbar-items mt-3"><i class="fas fa-child"></i><a id="hov" class="navbar-links"
+                                                                             href="{% url 'personality-question' %}">Start description test</a></li>
+                                                                             <li class="navbar-items mt-3"><i class="	far fa-kiss-wink-heart"></i><a id="hov" class="navbar-links"
+                                                                                                                                                  href="{% url 'moments' %}">My best moment</a></li>
+
+
+
+
+
+    </ul>
+
+</div>
+<div class="container mt-5">
+
+
+
+
+    {% block content %}
+
+    {% endblock %}
+
+
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+  var totalimage = $('.vote-images').length;
+  var imageloaded = 0;
+  $('.vote-images').hide();
+  $('.vote-images').on('load', function(load) {
+
+
+          $('.vote-images').show();
+         $('.loader').hide();
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

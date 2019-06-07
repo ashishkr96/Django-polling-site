@@ -1,0 +1,27 @@
+{% extends 'poll/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    <form action="{% url 'image-create-poll' %}" method="post" id="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        
+            {{ cform|crispy }}
+       
+        <button class="btn btn-outline-success mt-2" type="submit" name="ques">Submit</button>
+
+    </form>
+
+
+
+
+{% endblock %}

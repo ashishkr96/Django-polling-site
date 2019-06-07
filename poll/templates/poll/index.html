@@ -1,0 +1,19 @@
+{% extends 'poll/base.html' %}
+
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <h6>Hello welcome to poll world,We thank you for choosing us.
+    Here you and get the opinions of people.
+    Just Goto start poll and type the question and choices and start polling.
+    This website is in development process and we will be adding new features for you.
+    Keep Enjoying</h6>
+
+
+{% endblock %}

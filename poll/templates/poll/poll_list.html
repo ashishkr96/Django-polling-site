@@ -1,0 +1,71 @@
+{% extends 'poll/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+<h6 class="img-poll-list">Go to image poll list question : <a href="{% url 'all-image-poll' %}">Click here</a></h6>
+<h6 class="img-poll-list">Go to Personality description list : <a href="{% url 'personality-page' %}">Click here</a></h6>
+
+
+
+
+
+    <table class="table table-bordered table-dark table-responsive" >
+        <thead>
+        <tr>
+            <th scope="col">S.NO</th>
+            <th scope="col">List of Polls Conducted</th>
+
+            <th scope="col">Started on</th>
+            {% if user.is_superuser %}
+                <th scope="col">Username</th>
+
+
+
+                <th scope="col">Real Name</th>
+                <th scope="col">Total Votes</th>
+            {% else %}
+                <th scope="col">Started by</th>
+                <th scope="col">Total Votes</th>
+            {% endif %}
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+
+            <tr>
+
+
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'detail-poll' question.id %}">{{ question.question }}</a></td>
+
+                <td>{{ question.date.date }}</td>
+                {% if user.is_superuser %}
+                    <td>{{ question.created_by.username }}</td>
+
+                    <td>{{ question.created_by.first_name }} {{ question.created_by.last_name }}</td>
+                    <td>{{ question.total_count }}</td>
+                {% else %}
+
+                    <td>Anonymous</td>
+                    <td>{{ question.total_count }}</td>
+
+                {% endif %}
+
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

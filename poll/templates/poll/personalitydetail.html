@@ -1,0 +1,55 @@
+{% extends 'poll/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+
+
+
+
+
+
+        <table class="table table-bordered table-dark table-responsive" >
+            <thead>
+            <tr>
+                <th scope="col">S.NO</th>
+                <th scope="col">List of Description</th>
+
+
+                    <th scope="col">Started by</th>
+
+
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for person in personality %}
+
+                <tr>
+
+
+                    <td>{{ forloop.counter }}</td>
+                    <td><a href="{% url 'personality-answer' person.id %}">{{ person.Question }}</a></td>
+
+
+
+                        <td>Anonymous</td>
+
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+
+    {% endblock %}

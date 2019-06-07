@@ -1,0 +1,25 @@
+{% extends 'poll/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    <form action="{% url 'signup' %}" method="post" id="form">
+        {% csrf_token %}
+        {{ form|crispy }}
+        
+        <button class="btn btn-outline-success mt-2" type="submit" name="ques">Submit</button>
+
+    </form>
+
+
+
+
+{% endblock %}

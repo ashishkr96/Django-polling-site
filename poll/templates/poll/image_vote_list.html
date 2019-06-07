@@ -1,0 +1,33 @@
+{% extends 'poll/base.html' %}
+
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    <h3>{{ question }}</h3><br>
+
+    {% for resul,name in result %}
+
+        <img src="https://media.giphy.com/media/gmwdx428w9puw/giphy.gif" alt="My image" class = "loader"/>
+        <img src="{{ name }}" alt="My image" class = "vote-images"/>
+
+        <div class="progress mb-2">
+            <div class="progress-bar {{ progressbc }}" role="progressbar" aria-valuenow="40"
+                 aria-valuemin="0" aria-valuemax="100" style="width:{{ resul }}%">
+                {{ resul }} %
+            </div>
+        </div>
+
+    {% endfor %}
+    <a class="btn btn-outline-info mt-4" href="{% url 'all-image-poll' %}">Go back</a>
+
+
+
+
+{% endblock %}
